@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# Twitter React Test Task
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Available Scripts
+## Stack
 
-In the project directory, you can run:
+* `react` — it's a react application overall.
+  * `react-dom` — because we need to render React to DOM.
+* `redux` — because we need to manage state (tweets, users).
+  * `react-redux` — binding of Redux for React.
+  * `redux-logger` — logging solutions for Redux. Useful for debugging.
+  * `redux-thunk` — to compose more complex actions for Redux.
+* `react-router-dom` — widespread routing solution for React.
+  * `connected-react-router` — bindings of router for Redux. Useful for time traveling.
+* `react-scripts` — because we need to incapsulate build process under a single dependency.
+* `react-markdown` — for rendering links, styled text in tweets. Can be replaced by Remark itself.
+* `moment` — useful for dealing with dates.
+* `material-ui/core` — just a UI library to make it look nicer.
+  * `typeface-roboto` — Roboto font.
+* `uuid` — a library for generating unique ids.
+* `hysky` — useful tool for adding git-hooks.
+* `lint-staged` — easier linting for staged files.
+* `prettier` — tool for code formatting.
+* `prop-types` — for checking component's properties.
+* `react-test-renderer` — for rendering React components in snapshots. Enzyme would be an overkill here.
+* `redux-mock-store` — for mocking Redux store in tests.
 
-### `yarn start`
+## To-do
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Add tests for containers.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Screenshot
 
-### `yarn test`
+### Login page
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![screen shot 2018-08-10 at 21 23 45](https://user-images.githubusercontent.com/3459374/43974997-d5d5ca32-9ce4-11e8-8b99-c44927fa522d.png)
 
-### `yarn build`
+### Timeline
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![screen shot 2018-08-10 at 21 27 20](https://user-images.githubusercontent.com/3459374/43974995-d5b510c6-9ce4-11e8-83f4-6eb8c6d7c620.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Reply to tweet
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![screen shot 2018-08-10 at 21 28 13](https://user-images.githubusercontent.com/3459374/43974992-d57631c6-9ce4-11e8-9043-e4ed2f6392dd.png)
 
-### `yarn eject`
+### Single tweet view
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![screen shot 2018-08-10 at 21 29 36](https://user-images.githubusercontent.com/3459374/43974993-d5957bf8-9ce4-11e8-8090-9306049f6c92.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## License
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+MIT © [Denys Dovhan](//denysdovhan.com)
