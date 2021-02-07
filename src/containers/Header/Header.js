@@ -1,27 +1,27 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
   Typography,
   Button,
   withStyles,
-  Avatar,
-} from '@material-ui/core';
-import { logout, getUserById, isAuthenticated } from '../../modules/users';
-import colorFrom from '../../utils/colors';
+  Avatar
+} from "@material-ui/core";
+import { logout, getUserById, isAuthenticated } from "../../modules/users";
+import colorFrom from "../../utils/colors";
 
 const styles = theme => ({
   flex: {
     flexGrow: 1,
-    marginLeft: theme.spacing.unit,
+    marginLeft: theme.spacing.unit
   },
   link: {
-    textDecoration: 'none',
-    color: 'inherit',
-  },
+    textDecoration: "none",
+    color: "inherit"
+  }
 });
 
 export const Header = ({ classes, isAuthenticated, user, onLogout }) => (
@@ -30,7 +30,7 @@ export const Header = ({ classes, isAuthenticated, user, onLogout }) => (
       {user && (
         <Avatar
           style={{
-            backgroundColor: colorFrom(user.username),
+            backgroundColor: colorFrom(user.username)
           }}
         >
           {user.username[0]}
@@ -38,7 +38,7 @@ export const Header = ({ classes, isAuthenticated, user, onLogout }) => (
       )}
       <Typography variant="title" color="inherit" className={classes.flex}>
         <Link to="/" className={classes.link}>
-          {user ? user.username : 'React Twitter'}
+          {user ? user.username : "React Twitter"}
         </Link>
       </Typography>
       {isAuthenticated ? (
@@ -54,29 +54,16 @@ export const Header = ({ classes, isAuthenticated, user, onLogout }) => (
   </AppBar>
 );
 
-Header.propTypes = {
-  classes: PropTypes.object.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  user: PropTypes.shape({
-    id: PropTypes.string,
-    username: PropTypes.string.isRequired,
-  }).isRequired,
-  onLogout: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = state => ({
   isAuthenticated: isAuthenticated(state.users),
-  user: getUserById(state.users, state.users.active),
+  user: getUserById(state.users, state.users.active)
 });
 
 const mapDispatchToProps = {
-  onLogout: logout,
+  onLogout: logout
 };
 
 // Probably better to use recompose
 export default withStyles(styles)(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(Header),
+  connect(mapStateToProps, mapDispatchToProps)(Header)
 );

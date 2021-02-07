@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import {
@@ -35,7 +35,7 @@ const Login = ({ classes, isAuthenticated, login }) => {
   const onSubmit = event => {
     event.preventDefault();
     setIsButtonDisabled(true);
-    console.log(inputValue);
+    // console.log(inputValue);
 
     if (!inputValue.trim()) {
       return;

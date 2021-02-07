@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles, CssBaseline, Grid } from '@material-ui/core';
-import Header from '../../containers/Header';
+import React from "react";
+import PropTypes from "prop-types";
+import { withStyles, CssBaseline, Grid } from "@material-ui/core";
+import Header from "../../containers/Header";
 
 const styles = theme => ({
   root: {
-    paddingTop: 64,
+    paddingTop: 64
   },
   page: {
-    marginTop: theme.spacing.unit * 4,
-  },
+    marginTop: theme.spacing.unit * 4
+  }
 });
 
 const Layout = ({ classes, children }) => (
@@ -24,16 +24,8 @@ const Layout = ({ classes, children }) => (
   </main>
 );
 
-Layout.propTypes = {
-  classes: PropTypes.object.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node),
-  ]),
-};
-
-Layout.defaultProps = {
-  children: null,
-};
+// Layout.defaultProps = {
+//   children: null,
+// };
 
 export default withStyles(styles)(Layout);

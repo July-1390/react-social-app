@@ -1,70 +1,60 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Paper, TextField, Button, Grid, withStyles } from '@material-ui/core';
+import React, { useState } from "react";
+import { Paper, TextField, Button, Grid, withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   paper: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2
   },
   tweetButton: {
-    marginTop: theme.spacing.unit,
-  },
+    marginTop: theme.spacing.unit
+  }
 });
 
-class TweetInput extends React.Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func,
-  };
+const TweetInput = ({ classes, onSubmit }) => {
+  const [inputValue, setInputValue] = useState(null);
 
-  static defaultProps = {
-    onSubmit: () => {},
-  };
+  // const defaultProps = {
+  //   onSubmit: () => {},
+  // };
 
-  input = React.createRef();
+  const input = React.createRef();
 
-  onSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
-    const { value } = this.input.current;
+    // if (!inputValue.trim()) {
+    //   return;
+    // }
 
-    if (!value.trim()) {
-      return;
-    }
-
-    this.props.onSubmit(value, event);
-    this.input.current.value = '';
+    onSubmit(inputValue, event);
+    setInputValue("");
   };
 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <Paper className={classes.paper}>
-        <form onSubmit={this.onSubmit} autoComplete="off">
-          <TextField
-            required
-            fullWidth
-            multiline
-            rows={2}
-            placeholder="What's happening?"
-            inputRef={this.input}
-          />
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Button
-                variant="outlined"
-                color="primary"
-                type="submit"
-                className={classes.tweetButton}
-              >
-                Tweet
-              </Button>
-            </Grid>
+  return (
+    <Paper className={classes.paper}>
+      <form onSubmit={handleSubmit} autoComplete="off">
+        <TextField
+          required
+          fullWidth
+          multiline
+          rows={2}
+          placeholder="What's happening?"
+          inputRef={input}
+        />
+        <Grid container justify="flex-end">
+          <Grid item>
+            <Button
+              variant="outlined"
+              color="primary"
+              type="submit"
+              className={classes.tweetButton}
+            >
+              Tweet
+            </Button>
           </Grid>
-        </form>
-      </Paper>
-    );
-  }
-}
+        </Grid>
+      </form>
+    </Paper>
+  );
+};
 
 export default withStyles(styles)(TweetInput);
