@@ -1,9 +1,9 @@
-import * as actions from './actions';
-import { combineReducers } from 'redux';
+import { actions } from "./actionsNames";
+import { combineReducers } from "redux";
 
 export const initialState = {
   allIds: [],
-  byId: {},
+  byId: {}
 };
 
 export function allIds(state = initialState.allIds, action) {
@@ -20,7 +20,7 @@ export function byId(state = initialState.byId, action) {
     case actions.CREATE_TWEET:
       return {
         ...state,
-        [action.payload.id]: action.payload,
+        [action.payload.id]: action.payload
       };
     default:
       return state;
@@ -29,7 +29,7 @@ export function byId(state = initialState.byId, action) {
 
 export default combineReducers({
   allIds,
-  byId,
+  byId
 });
 
 // Selectors

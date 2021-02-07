@@ -1,10 +1,10 @@
-import * as actions from './actions';
-import { combineReducers } from 'redux';
+import { actions } from "./actionsNames";
+import { combineReducers } from "redux";
 
 export const initialState = {
   active: null, // id of current user
   allIds: [],
-  byId: {},
+  byId: {}
 };
 
 export function active(state = initialState.active, action) {
@@ -36,7 +36,7 @@ export function byId(state = initialState.byId, action) {
     case actions.SIGNUP:
       return {
         ...state,
-        [action.payload.id]: action.payload,
+        [action.payload.id]: action.payload
       };
     case actions.SIGNIN:
     case actions.LOGOUT:
@@ -49,7 +49,7 @@ export function byId(state = initialState.byId, action) {
 export default combineReducers({
   active,
   allIds,
-  byId,
+  byId
 });
 
 // Selectors

@@ -1,37 +1,30 @@
-import { v4 as uuid } from 'uuid';
-import * as fromUsers from './reducer';
-
-const scope = '@@users';
-
-export const RECIEVE_AUTH = `${scope}/RECIEVE_AUTH`;
-export const SIGNIN = `${scope}/SIGNIN`;
-export const SIGNUP = `${scope}/SIGNUP`;
-export const LOGIN = `${scope}/LOGIN`;
-export const LOGOUT = `${scope}/LOGOUT`;
+import { v4 as uuid } from "uuid";
+import { actions } from "./actionsNames";
+import * as fromUsers from "./reducer";
 
 export const recieveAuth = () => ({
-  type: RECIEVE_AUTH,
+  type: actions.RECIEVE_AUTH
 });
 
 export const signin = id => ({
-  type: SIGNIN,
+  type: actions.SIGNIN,
   payload: {
-    id,
-  },
+    id
+  }
 });
 
 export const signup = username => ({
-  type: SIGNUP,
+  type: actions.SIGNUP,
   payload: {
     id: uuid(),
-    username,
-  },
+    username
+  }
 });
 
 export const login = username => (dispatch, getState) => {
   const { users } = getState();
 
-  dispatch({ type: LOGIN, username });
+  dispatch({ type: actions.LOGIN, username });
 
   const userId = fromUsers.getUserIdByUsername(users, username);
 
@@ -43,5 +36,5 @@ export const login = username => (dispatch, getState) => {
 };
 
 export const logout = () => ({
-  type: LOGOUT,
+  type: actions.LOGOUT
 });
