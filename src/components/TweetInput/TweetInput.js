@@ -13,18 +13,11 @@ const styles = theme => ({
 const TweetInput = ({ classes, onSubmit }) => {
   const [inputValue, setInputValue] = useState(null);
 
-  // const defaultProps = {
-  //   onSubmit: () => {},
-  // };
-
-  const input = React.createRef();
-
   const handleSubmit = event => {
     event.preventDefault();
-    // if (!inputValue.trim()) {
-    //   return;
-    // }
-
+    if (!inputValue.trim()) {
+      return;
+    }
     onSubmit(inputValue, event);
     setInputValue("");
   };
@@ -38,7 +31,7 @@ const TweetInput = ({ classes, onSubmit }) => {
           multiline
           rows={2}
           placeholder="What's happening?"
-          inputRef={input}
+          onChange={event => setInputValue(event.target.value)}
         />
         <Grid container justify="flex-end">
           <Grid item>

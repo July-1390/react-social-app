@@ -1,5 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
 import {
@@ -16,7 +15,7 @@ import {
 import Markdown from "react-markdown";
 import colorFrom from "../../utils/colors";
 
-const imageUrlRe = /\b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b/g;
+const imageUrlRe = RegExp(/\b(https?:\/\/\S+(?:png|jpe?g|gif)\S*)\b/g);
 
 const styles = theme => ({
   card: {
@@ -45,7 +44,19 @@ const Tweet = ({
   repliedTweet,
   highlighted
 }) => {
-  const image = text.match(imageUrlRe);
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    if (!text) {
+      // TODO: get rid of this validation
+      return;
+    }
+
+    const foundImages = text.match(imageUrlRe);
+    if (foundImages) {
+      setImage(foundImages[0]);
+    }
+  }, []);
 
   return (
     <Card
@@ -57,7 +68,7 @@ const Tweet = ({
       {image && (
         <CardMedia
           className={classes.cardMedia}
-          image={image[0]}
+          image={image}
           title="An tweet's image"
         />
       )}
@@ -118,11 +129,5 @@ const Tweet = ({
     </Card>
   );
 };
-
-// Tweet.defaultProps = {
-//   replyToId: null,
-//   repliedTweet: null,
-//   highlighted: false,
-// };
 
 export default withStyles(styles)(Tweet);
